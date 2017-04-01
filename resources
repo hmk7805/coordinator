@@ -1,0 +1,7 @@
+JAWSDB_URL = mysql://
+    user: dqszj15h0md5js0b
+    pass: qqm0uf7dh93isec8
+    instance/host: o3iyl77734b9n3tg.cbetxkdyhwsb.us-east-1.rds.amazonaws.com
+    port: 3306
+    default schema/DB: tkfy8oytt4m5v4r9
+    https://devcenter.heroku.com/articles/jawsdb#provisioning-the-add-on
