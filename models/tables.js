@@ -1,26 +1,52 @@
 module.exports = function(sequelize, DataTypes) {
-    var table1 = sequelize.define("table1", {
-        col1: {
+    // teachers table
+    var teachers = sequelize.define("teachers", {
+        uuid: {
+            type: DataTypes.UUID,
+            defaultValue: DataTypes.UUIDV1,
+            primaryKey: true
+        },
+        fullName: {
             type: DataTypes.TEXT,
             allowNull: false,
             validate: {
                 len: [1]
             }
         },
-        col2: {
+        phoneNumber: {
             type: DataTypes.STRING,
-            defaultValue: "Not Available"
-        },
-        col3: {
-            type: DataTypes.STRING,
-            allowNull: false,
+            defaultValue: null,
             validate: {
                 len: [1]
             }
         },
+        email: {
+            type: DataTypes.STRING,
+            defaultValue: null,
+            validate: {
+                isEmail: true,
+                msg: "Must be a valid e-mail address"
+            }
+        },
+        schedule: {
+            type: DataTypes.STRING,
+            validate: {
+                len: [1]
+            }
+        },
+        notes: {
+            type: DataTypes.STRING,
+            validate: {
+                len: [1]
+            }
+        },
+        active: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: true
+        },
     });
 
-    return table1;
-    table1.sync();
-    module.exports = table1;
+    return teachers;
+    teachers.sync();
+    module.exports = teachers;
 };
