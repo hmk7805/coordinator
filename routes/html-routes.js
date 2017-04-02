@@ -13,8 +13,8 @@ module.exports = function(app) {
         res.sendFile(path.join(__dirname + "/../public/"));
     });
 
-    app.get("/path1", function(req, res) {
-        res.sendFile(path.join(__dirname + "/../public/file.html"));
+    app.get("/newteacher", function(req, res) {
+        res.sendFile(path.join(__dirname + "/../public/teacherform.html"));
     });
 
 };

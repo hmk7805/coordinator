@@ -4,21 +4,24 @@ var db = require("../models");
 // Routes
 module.exports = function(app) {
 
-    app.get("/api/route", function(req, res) {
-        db.table1.findAll({})
-            .then(function(dbtable1) {
-                res.json(dbtable1);
+    app.get("/api/teachers", function(req, res) {
+        db.teachers.findAll({})
+            .then(function(dbteachers) {
+                res.json(dbteachers);
             });
     });
 
-    app.post("/api/route2", function(req, res) {
-        console.log(req.body);
-        db.table1.create({
-                col1: req.body.objName,
-                col2: req.body.objName2
+    app.post("/api/newteacher", function(req, res) {
+        db.teachers.create({
+                fullName: req.body.fullName,
+                phoneNumber: req.body.phoneNumber,
+                email: req.body.email,
+                schedule: req.body.schedule,
+                notes: req.body.notes,
+                // active: req.body.active
             })
-            .then(function(dbtable1) {
-                res.json(dbtable1);
+            .then(function(dbteachers) {
+                res.json(dbteachers);
             });
     });
 

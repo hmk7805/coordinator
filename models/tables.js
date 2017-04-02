@@ -16,16 +16,12 @@ module.exports = function(sequelize, DataTypes) {
         phoneNumber: {
             type: DataTypes.STRING,
             defaultValue: null,
-            validate: {
-                len: [1]
-            }
         },
         email: {
             type: DataTypes.STRING,
             defaultValue: null,
             validate: {
                 isEmail: true,
-                msg: "Must be a valid e-mail address"
             }
         },
         schedule: {
@@ -36,9 +32,6 @@ module.exports = function(sequelize, DataTypes) {
         },
         notes: {
             type: DataTypes.STRING,
-            validate: {
-                len: [1]
-            }
         },
         active: {
             type: DataTypes.BOOLEAN,

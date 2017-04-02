@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+    <!-- Font Awesome Glyphicons -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+    <!-- local css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+</head>
+
+<body>
+    <!-- header -->
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Coordinator</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="/">Home</a></li>
+                    <li class="active"><a href="/newteacher">Add New Teacher</a></li>
+                    <li><a href="/api/teachers">Teacher API</a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    <div class="container">
+        <h2 align="middle" style="color: #FFFFFF">Citizen Contribution for Green Charlotte</h2>
+        <div class="row">
+            <!-- FORM -->
+            <div class="col-md-6 col-md-offset-3">
+                <form id="newteacher">
+                    <div class="form-group">
+                        <!-- Feature Main -->
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h1 class="panel-title">
+                                    <span class="glyphicon glyphicon-user">
+      							</span> &nbsp;Teacher Information
+                                </h1>
+                            </div>
+                            <div class="panel-body">
+
+                                <!-- required  -->
+                                <label for="name">Full Name: <span style="color:red;">*</span></label>
+                                <input type="text" class="form-control required" id="fullName" required>
+                                <br />
+                                <!-- not required  -->
+                                <label for="phoneNumber">Phone Number</label>
+                                <input type="text" class="form-control" id="phoneNumber">
+                                <br />
+                                <!-- not required  -->
+                                <label for="email">Email</label>
+                                <input type="text" class="form-control" id="email">
+                                <br />
+                                <!--required-->
+                                <label for="schedule">Schedule <span style="color:red;">*</span></label>
+                                <select class="form-control required" id="schedule" required>
+                                    <option value="Weekly">Weekly</option>
+                                    <option value="Bi-Weekly">Bi-Weekly</option>
+                                    <option value="Once a Month">Once a Month</option>
+                                    <option value="Special Schedule">Special Schedule</option>
+                                    <option value="Back-up">Back-up</option>
+ 							    </select>
+                                <br />
+                                <!--active checkbox is not passing the correct values back. I am commenting it out for now, also commenting out the associated peices in api-route.js and in the script section of this file-->
+                                <!--required-->
+                                <!--<label><input type="checkbox" name="Active" id="active" required> Active Status <span style="color:red;">*</span></label>
+                                <br /><br />-->
+                                <!-- not required  -->
+                                <label for="notes">Special Notes:</label>
+                                <textarea class="form-control" rows="3" id="notes"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <span class="text-muted"><em><span style="color:red;">*</span> Indicates required field</em>
+                        </span>
+                    </div>
+                    <!-- Submit the Citizen Contr. from -->
+                    <button type="submit" class="btn btn-success" id="submit">Submit</button>
+                    </br>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--footer-->
+    <footer class="navbar navbar-default navbar-bottom">
+        <div class="container">
+            <p class="text-muted">Footer content here.</p>
+        </div>
+    </footer>
+
+</body>
+
+<script>
+    //clear form feilds
+    function clearForm() {
+        $("#fullName").val(" ");
+        $("#phoneNumber").val(" ");
+        $("#email").val(" ");
+        $("#notes").val(" ");
+    };
+    //scrape form fields
+    function defineTeacher() {
+        var newTeacher = {
+            fullName: $("#fullName").val().trim(),
+            phoneNumber: $("#phoneNumber").val().trim(),
+            email: $("#email").val().trim(),
+            schedule: $("#schedule").val().trim(),
+            // active: $("#active").val().trim(),
+            notes: $("#notes").val().trim()
+        };
+        return newTeacher;
+    };
+    // submit form, make teacher post
+    $("#submit").on("click", function() {
+        event.preventDefault();
+        var currentURL = window.location.origin;
+        $.post(currentURL + "/api/newteacher", defineTeacher(), function() {
+            clearForm();
+            alert("Teacher Added");
+        });
+    });
+</script>
+
+</html>
