@@ -7,10 +7,10 @@
         "dialect": "mysql"
     },
     "test": {
-        "username": "root",
-        "password": null,
-        "database": "greenPoints",
-        "host": "127.0.0.1",
+        "username": "dqszj15h0md5js0b",
+        "password": "qqm0uf7dh93isec8",
+        "database": "tkfy8oytt4m5v4r9",
+        "host": "o3iyl77734b9n3tg.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
         "dialect": "mysql"
     },
     "production": {
