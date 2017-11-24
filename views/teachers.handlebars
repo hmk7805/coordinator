@@ -1,0 +1,14 @@
+{{#each teachers }}
+<div class="well teacher">
+    <div data-id={{this.uuid}}>
+        <h3>{{this.fullName}}</h3>
+        <h4>Phone Number: {{this.phoneNum}}</h4>
+        <h4>Email: {{this.email}}</h4>
+        <h4>Schedule: {{this.schedule}}</h4>
+        <h4>Special Notes: {{this.notes}}</h4>
+    </div>
+    <div>
+        <button class="btn" id="edit-teacher">Edit</button>   
+    </div>     
+</div>
+{{/each}}

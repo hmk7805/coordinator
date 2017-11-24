@@ -4,10 +4,14 @@ var db = require("../models");
 // Routes
 module.exports = function(app) {
 
+
     app.get("/api/teachers", function(req, res) {
         db.teachers.findAll({})
-            .then(function(dbteachers) {
-                res.json(dbteachers);
+            .then(function(data) {
+                var hdbsObj = {
+                    teachers: data
+                }
+                res.render("teachers", hdbsObj);
             });
     });
 
@@ -25,14 +29,14 @@ module.exports = function(app) {
             });
     });
 
-    app.get("/api/var/:var", function(req, res) {
-        db.table1.findAll({
+    app.get("/profile/:id", function(req, res) {
+        db.table1.findOne({
                 where: {
-                    var: req.params.var
+                    uuid: req.params.id
                 }
             })
-            .then(function(dbtable1) {
-                res.json(dbtable1);
+            .then(function(teacher) {
+                res.render("profile", teacher);
             });
     });
 }
